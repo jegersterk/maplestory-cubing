@@ -374,10 +374,6 @@ function potential_stats_with_weights(potential_table, rank_num, cube_type) {
 		...potential_table[rank_num].map(entry => entry.stat)
 	];
 
-	console.log(line_1)
-	console.log(line_2)
-	console.log(line_3)
-
 	return { stats, line_1, line_2, line_3 }
 }
 
@@ -488,11 +484,10 @@ function potential_lines_instance_console(psww) {
 // setInterval(roll, 1000);
 
 function potential_lines_instance() {
-	let rank = 3;
-
 	const equipValue = document.getElementById("equipment_selector").value;
+	const rankValue = Number(document.getElementById("rank_selector").value);
 	table_formatted = rank_table_reformatting(equipment_and_potential_table_unformatted[equipValue]);
-	psww = potential_stats_with_weights(table_formatted, rank, "r");
+	psww = potential_stats_with_weights(table_formatted, rankValue, "r");
 
 	const html_line_0 = document.getElementById("html_line_1");
 	const html_line_1 = document.getElementById("html_line_2");
@@ -501,11 +496,16 @@ function potential_lines_instance() {
 	html_line_0.innerHTML = psww.stats[line_index_roller(psww.line_1)]
 	html_line_1.innerHTML = psww.stats[line_index_roller(psww.line_2)]
 	html_line_2.innerHTML = psww.stats[line_index_roller(psww.line_3)]
-}
 
+	nn += 1;
+	document.getElementById("roll_counter").innerText = nn;
+	
+}
 // main() 
 try {
+	var nn = 0;
 	potential_lines_instance()
+	console.log(nn)
 
 } catch (e) {
 
